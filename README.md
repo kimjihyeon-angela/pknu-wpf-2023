@@ -11,5 +11,12 @@ WPF => Windows Presentation Foundation
 ## Day 02
 - WPF 기초
 	- 기본 컨트롤
-	- 레이아웃
+	- 레이아웃 Grid 사용방법
+	- 바이크샵 만들기
+	- WPF만의 개발 방식
+	- 데이터 바인딩
+	
+## Day 03
+- WPF 기초
+	- 데이터바인딩 계속
 	

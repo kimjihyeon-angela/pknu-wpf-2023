@@ -1,0 +1,121 @@
+﻿<Page x:Class="wp05_bikeshop.TestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:wp05_bikeshop"
+      xmlns:logics="clr-namespace:wp05_bikeshop.Logics"
+      mc:Ignorable="d" 
+      d:DesignHeight="480" d:DesignWidth="760"
+      Title="보증관리페이지" Loaded="Page_Loaded" Background="Beige" >
+
+    <Page.Resources>
+        <logics:MyConverter x:Key="myConv" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="● 테스트" FontSize="20" FontWeight="ExtraBold" Margin="10,20,10,20" />
+        <Button Grid.Row="2" Grid.Column="2" Content="전송" FontSize="15" Margin="10,10,40,10" />
+        <TextBox x:Name="TxtSample" Grid.Row="2" Grid.Column="0" FontSize="15" Text="" Margin="10,10,40,10" Grid.ColumnSpan="2"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" >
+            <Slider x:Name="SldValue" Maximum="100" Value="0" Ticks="10" ValueChanged="SldValue_ValueChanged"/>
+            <ProgressBar x:Name="PgbValue" Height="30" Maximum="100" Value="{Binding Value, ElementName=SldValue, Mode=OneWay}" />
+            <Label x:Name="LblValue" Content="{Binding Value, ElementName=SldValue}" FontSize="20" HorizontalAlignment="Center" />
+            <TextBox Name="TxtSource" Text="150" FontSize="15" />
+            <TextBox Text="{Binding Path=Text, ElementName=TxtSource, Mode=OneWay, 
+                Converter={StaticResource myConv}}" FontSize="15" />
+            <!-- 
+            Mode = TwoWay인 경우 아래 텍스트박스의 내용이 변경된 후 위 텍스트박스 선택 시 내용이 따라 변경됨
+            Mode = OneWay인 경우 변경 위 텍스트 변경에 대한 내용만 아래 텍스트박스에 적용됨
+            -->
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <ComboBox x:Name="CtlCars" ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="30">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Speed}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <ListBox ItemsSource="{Binding}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="200">
+                <ListBox.ItemTemplate>
+                    <!--
+                    <DataTemplate>
+                        <Label Content="{Binding Speed}" />
+                    </DataTemplate>
+                    -->
+                    <ItemContainerTemplate>
+                        <StackPanel>
+                            <TextBlock Text="Speed" />
+                            <TextBox Text="{Binding Speed, Converter={StaticResource myConv}}" />
+                            <TextBlock Text="Color" />
+                            <Border Height="10">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Colorz}" />
+                                </Border.Background>
+                            </Border>
+                            <TextBox Text="{Binding Colorz}" />
+                        </StackPanel>
+                    </ItemContainerTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <!-- 그래픽버튼 생성 / WPF는 기존 컨트롤에 대한 디자인도 변경 가능 -->
+            <Button Content="눌러주세요." Click="Button_Click" Background="BurlyWood">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}" Width="100" Height="40"/>
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!-- 
+                        버튼 영역 중 동그라미로 설정한 부분만 버튼으로 사용 가능 
+                        controltemplate의 경우 컨트롤 한개밖에 사용 못함 => grid를 사용하여 하위요소 추가
+                        -->
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="Press Me" Background="#8080ff" Width="150" Height="60">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle Fill="{TemplateBinding Background}" RadiusX="10" RadiusY="10" StrokeThickness="3" Stroke="DarkBlue"/>
+                            <Label Content="{TemplateBinding Content}" FontSize="16" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   Foreground="White" FontWeight="Bold"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <!--
+        <Label>
+            -->
+        <!-- 사용자가 만든 클래스는 반드시 재컴파일 이후 사용(필수)-->
+        <!--
+            <logics:Car Names="아이오닉" Speed="230" Colors="WhiteSmoke"/>
+        </Label>
+        -->
+
+    </Grid>
+</Page>

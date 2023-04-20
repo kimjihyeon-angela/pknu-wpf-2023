@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wp06_mvvm", "wp06_mvvm\wp06_mvvm.csproj", "{04FAF93B-9821-4DEF-AE85-C8A610528EE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wp05_bikeshop", "wp05_bikeshop\wp05_bikeshop.csproj", "{2E32C726-7EA5-4CB1-8179-0718FB5F48A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04FAF93B-9821-4DEF-AE85-C8A610528EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04FAF93B-9821-4DEF-AE85-C8A610528EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04FAF93B-9821-4DEF-AE85-C8A610528EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04FAF93B-9821-4DEF-AE85-C8A610528EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E32C726-7EA5-4CB1-8179-0718FB5F48A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E32C726-7EA5-4CB1-8179-0718FB5F48A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E32C726-7EA5-4CB1-8179-0718FB5F48A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E32C726-7EA5-4CB1-8179-0718FB5F48A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {755637AA-AB2B-423A-8B31-E3207EED47B4}
+	EndGlobalSection
+EndGlobal

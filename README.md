@@ -3,10 +3,12 @@
 
 WPF => Windows Presentation Foundation
 
+
 ## Day 01
 - WPF 기초
 	- WPF 개요 및 윈폼과의 차이점
 	- 기본 컨트롤
+
 
 ## Day 02
 - WPF 기초
@@ -16,7 +18,16 @@ WPF => Windows Presentation Foundation
 	- WPF만의 개발 방식
 	- 데이터 바인딩
 	
+	
 ## Day 03
 - WPF 기초
-	- 데이터바인딩 계속
+	- 데이터바인딩 마무리
+	- 디자인 (템플릿, 스타일, 리소스, 리소스 딕셔너리)
+	
+	
+## Day 04
+- WPF 응용
+	- MahApps.Metro 디자인 적용
+	- MVVM 패턴
+	- 데이터바인딩 DB연동
 	

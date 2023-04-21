@@ -30,8 +30,7 @@ WPF => Windows Presentation Foundation
 	- MahApps.Metro 디자인 적용
 	- MVVM 패턴
 	- 데이터바인딩 DB연동
-	<img
-	src = "https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/PersonalInfo_Design.png"
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/PersonalInfo_Design.png" width="780"/>
 
 <PersonalInfo 디자인 화면>
 

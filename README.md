@@ -30,4 +30,8 @@ WPF => Windows Presentation Foundation
 	- MahApps.Metro 디자인 적용
 	- MVVM 패턴
 	- 데이터바인딩 DB연동
+	![WPF앱 디자인 화면](https://raw.githubusercontent.com/kimjihyeon-angela/miniprojects/main/images/addressbook1.png)
+
+<신규등록>
+
 	

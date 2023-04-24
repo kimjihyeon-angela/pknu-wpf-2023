@@ -34,4 +34,12 @@ WPF => Windows Presentation Foundation
 
 <PersonalInfo 디자인 화면>
 
+
+## Day 05
+- WPF 응용
+	- MVVM 패턴
+	- MVVM framework
+		- Caliburn
+	- 데이터바인딩 DB연동
+
 	

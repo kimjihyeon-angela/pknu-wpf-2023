@@ -52,6 +52,7 @@ WPF => Windows Presentation Foundation
 
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_ing.png" width="700"/>
 
+
 <영화 검색 디자인 화면 - 진행중>
 
 

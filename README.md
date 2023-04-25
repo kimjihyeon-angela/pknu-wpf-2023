@@ -50,7 +50,7 @@ WPF => Windows Presentation Foundation
 		- MahApps.Metro.IconPacks
 		- Newtonsoft.Json
 
-<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_ing.png" width="700"/>
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_ing.PNG" width="700"/>
 
 
 <영화 검색 디자인 화면 - 진행중>

@@ -30,7 +30,7 @@ WPF => Windows Presentation Foundation
 	- MahApps.Metro 디자인 적용
 	- MVVM 패턴
 	- 데이터바인딩 DB연동
-<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/PersonalInfo_Design.png" width="780"/>
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/PersonalInfo_Design.png" width="700"/>
 
 <PersonalInfo 디자인 화면>
 
@@ -42,4 +42,16 @@ WPF => Windows Presentation Foundation
 		- Caliburn
 	- 데이터바인딩 DB연동
 
-	
+## Day 06
+- WPF 응용
+	- 영화 API 활용 검색 앱 실습	
+		- TMDB OpenAPI
+		- MahApps.Metro
+		- MahApps.Metro.IconPacks
+		- Newtonsoft.Json
+
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_ing.png" width="700"/>
+
+<영화 검색 디자인 화면 - 진행중>
+
+

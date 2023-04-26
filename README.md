@@ -55,4 +55,9 @@ WPF => Windows Presentation Foundation
 
 <영화 검색 디자인 화면 - 진행중>
 
-
+## Day 07
+- WPF 응용
+	- 영화 검색앱
+		- 화면 정리
+		- youtube Open API 연동
+		- DB 데이터바인딩

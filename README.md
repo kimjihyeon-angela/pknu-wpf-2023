@@ -63,9 +63,18 @@ WPF => Windows Presentation Foundation
 		- DB 데이터바인딩(SQL Server)
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MoviFinder.gif" width="700"/>
 
-<영화 검색앱>
+<영화 검색앱 - 진행중>
 		
 ## Day 08
 - WPF 응용
 	- 영화 검색앱
 		- DB 데이터바인딩(MySQL)
+	- 미세먼지확인 앱 개발
+		- MahApps.Metro
+		- 데이터포털 OpenAPI
+		- DB 데이터바인딩(MySQL)
+		
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MoviFinder_Finish.gif" width="700"/>
+
+<영화 검색앱 - 완료>
+	

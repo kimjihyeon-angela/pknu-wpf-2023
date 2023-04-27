@@ -26,9 +26,22 @@
                Content="영화 제목" />
 
         <ListView Grid.Row="1" Grid.Column="0" x:Name="LsvResult" Margin="5" >
-            <ListView>
-                
-            </ListView> 
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="영화 제목" Width="Auto"
+                                    DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="감독" Width="Auto"
+                                    DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="출연진" Width="Auto"
+                                    DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="개봉일" Width="Auto"
+                                    DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="줄거리" Width="Auto"
+                                    DisplayMemberBinding="{Binding Title}" />
+                    
+                    
+                </GridView>
+            </ListView.View> 
         </ListView>
 
     </Grid>

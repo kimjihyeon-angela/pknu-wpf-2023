@@ -74,7 +74,7 @@ WPF => Windows Presentation Foundation
 		- 데이터포털 OpenAPI
 		- DB 데이터바인딩(MySQL)
 		
-<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MoviFinder_Finish.gif" width="700"/>
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_Finish.gif" width="700"/>
 
 <영화 검색앱 - 완료>
 	

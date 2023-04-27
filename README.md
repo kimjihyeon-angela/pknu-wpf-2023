@@ -77,4 +77,21 @@ WPF => Windows Presentation Foundation
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_Finish.gif" width="700"/>
 
 <영화 검색앱 - 완료>
+
+
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/FineDust_ing.gif" width="700"/>
+
+<미세먼지확인 앱 - 진행 중>
+
+
+## Day 09
+- WPF 응용
+	- 미세먼지확인 앱 완료
+		- MahApps.Metro
+		- 데이터포털 openAPI
+		- DB 데이터바인딩 (MySQL)
+	- 개인 포트폴리오 개발 방식
+		- 데이터포털 OpenAPI
+		- 네이버, 카카오 OpenAPI
+		- 기타 OpenAPI
 	

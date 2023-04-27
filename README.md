@@ -60,4 +60,12 @@ WPF => Windows Presentation Foundation
 	- 영화 검색앱
 		- 화면 정리
 		- youtube Open API 연동
-		- DB 데이터바인딩
+		- DB 데이터바인딩(SQL Server)
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MoviFinder.gif" width="700"/>
+
+<영화 검색앱>
+		
+## Day 08
+- WPF 응용
+	- 영화 검색앱
+		- DB 데이터바인딩(MySQL)

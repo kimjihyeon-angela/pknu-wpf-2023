@@ -21,5 +21,15 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+               x:Name="LblMovieName" FontSize="15" Margin="10"
+               Content="영화 제목" />
+
+        <ListView Grid.Row="1" Grid.Column="0" x:Name="LsvResult" Margin="5" >
+            <ListView>
+                
+            </ListView> 
+        </ListView>
+
     </Grid>
 </mah:MetroWindow>

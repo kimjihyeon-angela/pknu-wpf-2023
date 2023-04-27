@@ -74,6 +74,9 @@ WPF => Windows Presentation Foundation
 		- 데이터포털 OpenAPI
 		- DB 데이터바인딩(MySQL)
 		
+		- (콤보박스 클릭 이벤트 -> 미완성)
+
+		
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MovieFinder_Finish.gif" width="700"/>
 
 <영화 검색앱 - 완료>
@@ -82,6 +85,7 @@ WPF => Windows Presentation Foundation
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/FineDust_ing.gif" width="700"/>
 
 <미세먼지확인 앱 - 진행 중>
+
 
 
 ## Day 09

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -38,6 +39,7 @@ namespace Wp12_finedustCheck
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // 콤보박스에 들어갈 날짜 DB에서 조회하여 출력하기
+            // ** DB에 저장한 후에도 콤보박스 재조회하여 날짜 출력해야함
             using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
             {
                 conn.Open();
@@ -95,7 +97,8 @@ namespace Wp12_finedustCheck
                 {
                     var data = jsonResult["data"];
                     var json_array = data as JArray;
-                    
+
+
                     var dustSensors = new List<DustSensor>();
                     foreach (var sensor in json_array)
                     {
@@ -214,11 +217,86 @@ namespace Wp12_finedustCheck
         #region < 콤보박스 검색 날짜 선택 이벤트 (MySQL에서 조회 후 리스트 출력) >
         private void CboReqDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // 콤보박스에 선택된 내용이 없을 경우 (선택했다가 취소버튼 눌렀을 경우)
+            if (CboReqDate.SelectedValue != null)
+            {
+                // 콤보박스에 선택된 내용이 맞는지 테스트
+                // MessageBox.Show(CboReqDate.SelectedValue.ToString());
+                using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
+                {
+                    conn.Open();
+                    var query = @"SELECT Id
+                                       , Dev_id
+                                       , Name
+                                       , Loc
+                                       , Coordx
+                                       , Coordy
+                                       , Ison
+                                       , Pm10_after
+                                       , Pm25_after
+                                       , State
+                                       , Timestamp
+                                       , Company_id
+                                       , Company_name
+                                    FROM dustsensor
+                                   WHERE date_format(Timestamp, '%Y-%m-%d') = @Timestamp;";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Timestamp", CboReqDate.SelectedValue.ToString());
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds, "dustsensor");
+                    List<DustSensor> dustSensors = new List<DustSensor>();
+
+                    foreach (DataRow row in ds.Tables["dustsensor"].Rows)
+                    {
+                        dustSensors.Add(new DustSensor()
+                        {
+                            // MySQL의 경우 컬럼이름에 대소문자 구분 x 꼭 컬럼과 같을 필요 x
+                            // But, 가능하면 맞춰주기 (다른 SQL은 구분하기 때문)
+                            Id = Convert.ToInt32(row["Id"]), 
+                            Dev_id = Convert.ToString(row["Dev_id"]),
+                            Name = Convert.ToString(row["Name"]),
+                            Loc = Convert.ToString(row["Loc"]),
+                            Coordx = Convert.ToDouble(row["Coordx"]),
+                            Coordy = Convert.ToDouble(row["Coordy"]),
+                            Ison = Convert.ToBoolean(row["Ison"]),
+                            Pm10_after = Convert.ToInt32(row["Pm10_after"]),
+                            Pm25_after = Convert.ToInt32(row["Pm25_after"]),
+                            State = Convert.ToInt32(row["State"]),
+                            Timestamp = Convert.ToDateTime(row["Timestamp"]),
+                            Company_id = Convert.ToString(row["Company_id"]),
+                            Company_name = Convert.ToString(row["Company_name"])
+                        });
+                    }
+
+                    this.DataContext = dustSensors;
+                    StsResult.Content = $"DB {dustSensors.Count} 건 조회 완료";
+                }
+            }
+
+            // 콤보박스 취소버튼 클릭시 dbGrid 내용 지우기
+            else
+            {
+                this.DataContext = null;
+                StsResult.Content = $"DB 조회 클리어";
+            }
+        }
+
+
+        #endregion
+
+        #region < 그리드 특정 로우 더블클릭 시 지도(센서위치)창 띄우기 >
+        private void GrdResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selItem = GrdResult.SelectedItem as DustSensor;
+
+            var mapWindow = new MapWindow(selItem.Coordy, selItem.Coordx); 
+            // 부모창 위치값을 자식창으로 전달
+            mapWindow.Owner = this; // 메인윈도우가 부모임을 의미함
+            mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            mapWindow.ShowDialog();
 
         }
         #endregion
-
-
-       
     }
 }

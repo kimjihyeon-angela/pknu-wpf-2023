@@ -1,0 +1,52 @@
+﻿<mah:MetroWindow 
+    x:Class="wp13_portfolio.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:wp13_portfolio"
+    mc:Ignorable="d"
+    Title="MainWindow" Height="450" Width="800"
+    WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="부산시 동물병원 정보 조회" FontSize="18" FontWeight="Bold" Margin="10"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <ComboBox x:Name="CboReqDate" Margin="5" Style="{StaticResource MahApps.Styles.ComboBox.Virtualized}" 
+                          mah:TextBoxHelper.Watermark="구/ 군" mah:TextBoxHelper.UseFloatingWatermark="True"
+                          mah:TextBoxHelper.ClearTextButton="True" Width="100"/>
+                <TextBox x:Name="TxtSearch" Margin="5" mah:TextBoxHelper.Watermark="병원이름을 검색하세요"
+                         mah:TextBoxHelper.UseFloatingWatermark="True" Width="220"/>
+                <Button x:Name="BtnSearch" Content="검색하기" Margin="5" Width="80" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnSearch_Click"/>
+                <Button x:Name="BtnSaveData" Content="저장" Margin="5" Width="65" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Click="BtnSaveData_Click" />
+            </StackPanel>
+        </Grid>
+
+        <DataGrid Grid.Row="1" x:Name="GrdResult" Margin="10" Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
+                  ItemsSource="{Binding}" IsReadOnly="True">
+            
+        </DataGrid>
+        
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Content="부산시 동물병원 조회" />
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
+            <StatusBarItem x:Name="StsResult" />
+        </StatusBar>
+
+    </Grid>
+</mah:MetroWindow>

@@ -119,6 +119,6 @@ WPF => Windows Presentation Foundation
 
 <부산시 동물병원 조회>
 
-<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/MedicalInfo.gif" width="700"/>	
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/medicalInfo.gif" width="700"/>	
 
 <부산시 병원 및 약국 조회>

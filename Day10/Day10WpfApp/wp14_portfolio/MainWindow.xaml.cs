@@ -486,23 +486,62 @@ namespace wp14_portfolio
         }
         #endregion
 
-        #region < 지도 위치 띄우기 >
+        #region < 상세정보 + 지도 위치 띄우기 >
         private void GrdResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+
             var selItem = GrdResult.SelectedItem as MedicalInfo;
 
-            var mapWindow = new mapWindow(selItem.Lat, selItem.Lng);
+            string hosName = string.Empty;
+            string exam_parts = string.Empty;
+            string mon = string.Empty;
+            string tues = string.Empty;
+            string wed = string.Empty;
+            string thur = string.Empty;
+            string fri = string.Empty;
+            string sat = string.Empty;
+            string sun = string.Empty;
+            string holi = string.Empty;
+            string sun_oper = string.Empty;
+            double lat = double.NaN;
+            double lng = double.NaN;
 
-            mapWindow.Owner = this;
-            mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            mapWindow.ShowDialog();
+            if (GrdResult.SelectedItem is MedicalInfo)
+            {
+                var mediInfo = GrdResult.SelectedItem as MedicalInfo;
+                hosName = mediInfo.Instit_nm;
+                exam_parts = mediInfo.Exam_part;
+                mon = mediInfo.Monday;
+                tues = mediInfo.Tuesday;
+                wed = mediInfo.Wednesday;
+                thur = mediInfo.Thursday;
+                fri = mediInfo.Friday;
+                sat = mediInfo.Saturday;
+                sun = mediInfo.Sunday;
+                holi = mediInfo.Holiday;
+                sun_oper = mediInfo.Sunday_oper_week;
+                lat = mediInfo.Lat;
+                lng = mediInfo.Lng;
+
+            }
+
+            var DetailWindow = new DetailWindow(hosName, exam_parts, mon, tues, wed, thur, fri, sat, sun, holi, sun_oper, lat, lng);
+            //var mapWindow = new mapWindow(selItem.Lat, selItem.Lng);
+
+            DetailWindow.Owner = this;
+            DetailWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            DetailWindow.ShowDialog();
+
+            //mapWindow.Owner = this;
+            //mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            //mapWindow.ShowDialog();
         }
         #endregion
 
         #region < 페이지 로딩될 때 병원 정보 불러오고, 콤보박스 채우기 >
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
+            TxtSearch.Focus();
             SearchMedicalInfo();
             using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
             {

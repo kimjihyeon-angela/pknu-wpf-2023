@@ -113,6 +113,7 @@ WPF => Windows Presentation Foundation
 		- 부산시 병원 및 약국 조회
 			- 약국 및 병원 기관 분류 별 조회
 			- 검색 기능
+			- 세부 정보 조회 기능
 			- 지도 표시 기능
 			
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/animal_hospital.gif" width="700"/>	
@@ -122,3 +123,7 @@ WPF => Windows Presentation Foundation
 <img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/medicalInfo.gif" width="700"/>	
 
 <부산시 병원 및 약국 조회>
+
+<img src ="https://raw.githubusercontent.com/kimjihyeon-angela/pknu-wpf-2023/main/Images/medicalInfo2.gif" width="700"/>	
+
+<부산시 병원 및 약국 조회_수정>

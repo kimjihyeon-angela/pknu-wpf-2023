@@ -41,7 +41,9 @@
                           SelectionChanged="CboReqDate_SelectionChanged"/>
                 <TextBox x:Name="TxtSearch" Margin="5" mah:TextBoxHelper.Watermark="병원이름을 검색하세요"
                          mah:TextBoxHelper.UseFloatingWatermark="True" Width="200"
-                         mah:TextBoxHelper.ClearTextButton="True" KeyDown="TxtSearch_KeyDown"/>
+                         mah:TextBoxHelper.ClearTextButton="True" KeyDown="TxtSearch_KeyDown"
+                         InputMethod.PreferredImeState="On"
+                         InputMethod.PreferredImeConversionMode="Native"/>
                 <Button x:Name="BtnSearch" Content="검색하기" Margin="3,5" Width="80" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnSearch_Click"/>
                 <Button x:Name="BtnSaveData" Content="저장" Margin="3,5" Width="65" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Click="BtnSaveData_Click" />
             </StackPanel>
@@ -55,16 +57,6 @@
                 <DataGridTextColumn Binding="{Binding Street_nm_addr}" Header="도로명 주소" />
                 <DataGridTextColumn Binding="{Binding Organ_loc}" Header="위치" />
                 <DataGridTextColumn Binding="{Binding Tel}" Header="대표 전화" />
-                <DataGridTextColumn Binding="{Binding Exam_part}" Header="진료 과목" />
-                <DataGridTextColumn Binding="{Binding Monday}" Header="월요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Tuesday}" Header="화요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Wednesday}" Header="수요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Thursday}" Header="목요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Friday}" Header="금요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Saturday}" Header="토요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Sunday}" Header="일요일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Holiday}" Header="공휴일 진료 시간" />
-                <DataGridTextColumn Binding="{Binding Sunday_oper_week}" Header="일요일 진료 주" />
             </DataGrid.Columns>
             
         </DataGrid>

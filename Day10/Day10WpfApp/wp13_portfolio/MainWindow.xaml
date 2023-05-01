@@ -39,7 +39,9 @@
                           SelectionChanged="CboReqDate_SelectionChanged"/>
                 <TextBox x:Name="TxtSearch" Margin="5" mah:TextBoxHelper.Watermark="병원이름을 검색하세요"
                          mah:TextBoxHelper.UseFloatingWatermark="True" Width="220"
-                         mah:TextBoxHelper.ClearTextButton="True" KeyDown="TxtSearch_KeyDown"/>
+                         mah:TextBoxHelper.ClearTextButton="True" KeyDown="TxtSearch_KeyDown"
+                         InputMethod.PreferredImeState="On"
+                         InputMethod.PreferredImeConversionMode="Native"/>
                 <Button x:Name="BtnSearch" Content="검색하기" Margin="5" Width="80" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnSearch_Click"/>
                 <Button x:Name="BtnSaveData" Content="저장" Margin="5" Width="65" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Click="BtnSaveData_Click" />
             </StackPanel>

@@ -11,6 +11,12 @@
     Title="MainWindow" Height="450" Width="800"
     WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
 
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconFontAwesome Kind="DogSolid" Foreground="White" Margin="5,10,0,0"/>
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -29,17 +35,24 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <ComboBox x:Name="CboReqDate" Margin="5" Style="{StaticResource MahApps.Styles.ComboBox.Virtualized}" 
                           mah:TextBoxHelper.Watermark="구/ 군" mah:TextBoxHelper.UseFloatingWatermark="True"
-                          mah:TextBoxHelper.ClearTextButton="True" Width="100"/>
+                          mah:TextBoxHelper.ClearTextButton="True" Width="120"
+                          SelectionChanged="CboReqDate_SelectionChanged"/>
                 <TextBox x:Name="TxtSearch" Margin="5" mah:TextBoxHelper.Watermark="병원이름을 검색하세요"
-                         mah:TextBoxHelper.UseFloatingWatermark="True" Width="220"/>
+                         mah:TextBoxHelper.UseFloatingWatermark="True" Width="220"
+                         mah:TextBoxHelper.ClearTextButton="True" KeyDown="TxtSearch_KeyDown"/>
                 <Button x:Name="BtnSearch" Content="검색하기" Margin="5" Width="80" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnSearch_Click"/>
                 <Button x:Name="BtnSaveData" Content="저장" Margin="5" Width="65" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Click="BtnSaveData_Click" />
             </StackPanel>
         </Grid>
 
         <DataGrid Grid.Row="1" x:Name="GrdResult" Margin="10" Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
-                  ItemsSource="{Binding}" IsReadOnly="True">
-            
+                  ItemsSource="{Binding}" IsReadOnly="True" MouseDoubleClick="GrdResult_MouseDoubleClick" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Gugun}" Header="구 / 군" />
+                <DataGridTextColumn Binding="{Binding Animal_Hospital}" Header="동물병원 이름" />
+                <DataGridTextColumn Binding="{Binding Road_Address}" Header="주소" />
+                <DataGridTextColumn Binding="{Binding Tel}" Header="전화번호" />
+            </DataGrid.Columns>
         </DataGrid>
         
         <StatusBar Grid.Row="2">

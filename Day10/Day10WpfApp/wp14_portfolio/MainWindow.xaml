@@ -1,0 +1,79 @@
+﻿<mah:MetroWindow 
+    x:Class="wp14_portfolio.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:wp14_portfolio"
+    mc:Ignorable="d"
+    Title="Hospital Info" Height="450" Width="800"
+    WindowStartupLocation="CenterScreen"
+    FontFamily="NanumGothic" Loaded="MetroWindow_Loaded">
+
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconFontAwesome Kind="StethoscopeSolid" Foreground="White" Margin="5,7,0,0" />
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="부산시 병원 및 약국 정보 조회" FontSize="18" FontWeight="Bold" Margin="10"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <ComboBox x:Name="CboReqDate" Margin="5" Style="{StaticResource MahApps.Styles.ComboBox.Virtualized}" 
+                          mah:TextBoxHelper.Watermark="병원 / 약국" mah:TextBoxHelper.UseFloatingWatermark="True"
+                          mah:TextBoxHelper.ClearTextButton="True" Width="150"
+                          SelectionChanged="CboReqDate_SelectionChanged"/>
+                <TextBox x:Name="TxtSearch" Margin="5" mah:TextBoxHelper.Watermark="병원이름을 검색하세요"
+                         mah:TextBoxHelper.UseFloatingWatermark="True" Width="200"
+                         mah:TextBoxHelper.ClearTextButton="True" KeyDown="TxtSearch_KeyDown"/>
+                <Button x:Name="BtnSearch" Content="검색하기" Margin="3,5" Width="80" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Click="BtnSearch_Click"/>
+                <Button x:Name="BtnSaveData" Content="저장" Margin="3,5" Width="65" Style="{StaticResource MahApps.Styles.Button.Square.Highlight}" Click="BtnSaveData_Click" />
+            </StackPanel>
+        </Grid>
+
+        <DataGrid Grid.Row="1" x:Name="GrdResult" Margin="10" Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
+                  ItemsSource="{Binding}" IsReadOnly="True" MouseDoubleClick="GrdResult_MouseDoubleClick" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Instit_nm}" Header="기관명" />
+                <DataGridTextColumn Binding="{Binding Instit_kind}" Header="기관 분류" />
+                <DataGridTextColumn Binding="{Binding Street_nm_addr}" Header="도로명 주소" />
+                <DataGridTextColumn Binding="{Binding Organ_loc}" Header="위치" />
+                <DataGridTextColumn Binding="{Binding Tel}" Header="대표 전화" />
+                <DataGridTextColumn Binding="{Binding Exam_part}" Header="진료 과목" />
+                <DataGridTextColumn Binding="{Binding Monday}" Header="월요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Tuesday}" Header="화요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Wednesday}" Header="수요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Thursday}" Header="목요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Friday}" Header="금요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Saturday}" Header="토요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Sunday}" Header="일요일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Holiday}" Header="공휴일 진료 시간" />
+                <DataGridTextColumn Binding="{Binding Sunday_oper_week}" Header="일요일 진료 주" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Content="부산시 병원 및 약국 조회" />
+            <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
+            <StatusBarItem x:Name="StsResult" />
+        </StatusBar>
+
+    </Grid>
+</mah:MetroWindow>

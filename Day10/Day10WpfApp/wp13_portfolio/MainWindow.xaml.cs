@@ -36,15 +36,19 @@ namespace wp13_portfolio
             InitializeComponent();
         }
 
+        #region < 페이지 로드될 때 동물병원 정보 불러오고 콤보박스 채우기 >
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             SearchHospital();// 페이지 로드될 때 바로 정보 찾아오기
+                             // -> 순서 뒤죽박죽 => DB에서 불러와야 할 듯
+            TxtSearch.Focus();
             using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
             {
                 conn.Open();
+
                 var query = @"SELECT DISTINCT Gugun 
                                 FROM animalhospital
-                               ORDER BY ASC";
+                               ORDER BY Gugun ASC";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
@@ -59,7 +63,9 @@ namespace wp13_portfolio
                 CboReqDate.ItemsSource = saveDateList;
             }
         }
+        #endregion
 
+        #region < 실제 검색 메소드 >
         private async void SearchHospital()
         {
             string apikey = "4Ng%2FJiC8rO2xbjXzST7yzTCSfv2%2Bw57zIYoXivUfh1VIpBkQGln74kS5%2FyQpCMoANkXUJXlHWBEqNUrhHMo3zQ%3D%3D";
@@ -141,12 +147,64 @@ namespace wp13_portfolio
 
 
         }
+        #endregion
 
+        #region < 검색 버튼 클릭 >
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            SearchHospital();
-        }
+            if (TxtSearch.Text != null)
+            {
+                using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
+                {
+                    conn.Open();
+                    var query = @"SELECT Id
+                                       , Gugun
+                                       , Animal_Hospital
+                                       , Approval
+                                       , Road_Address
+                                       , Tel
+                                       , Lat
+                                       , Lon
+                                       , Basic_Date
+                                    FROM animalhospital
+                                   WHERE Animal_Hospital like @Animal_Hospital";
 
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    var Animal_Hospitals = "%" + TxtSearch.Text + "%";
+                    cmd.Parameters.AddWithValue("@Animal_Hospital", Animal_Hospitals);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds, "hospitalInfo");
+                    List<HospitalInfo> hospitalInfo = new List<HospitalInfo>();
+
+                    foreach (DataRow row in ds.Tables["hospitalInfo"].Rows)
+                    {
+                        hospitalInfo.Add(new HospitalInfo()
+                        {
+                            Gugun = Convert.ToString(row["gugun"]),
+                            Animal_Hospital = Convert.ToString(row["animal_hospital"]),
+                            Approval = Convert.ToString(row["approval"]),
+                            Road_Address = Convert.ToString(row["road_address"]),
+                            Tel = Convert.ToString(row["tel"]),
+                            Lat = Convert.ToDouble(row["lat"]),
+                            Lon = Convert.ToDouble(row["lon"]),
+                            Basic_Date = Convert.ToString(row["basic_date"])
+                        });
+                    }
+
+                    this.DataContext = hospitalInfo;
+                    StsResult.Content = $"DB {hospitalInfo.Count} 건 조회 완료";
+                }
+            }
+            else
+            {
+                SearchHospital();
+            }
+
+        }
+        #endregion
+
+        #region < 저장 버튼 클릭 >
         private async void BtnSaveData_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -209,5 +267,89 @@ namespace wp13_portfolio
                 await Commons.ShowMessageAsync("오류", $"DB저장 오류 {ex.Message}");
             }
         }
+        #endregion
+
+        #region < 동물병원 위치 지도 띄우기 >
+        private void GrdResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selItem = GrdResult.SelectedItem as HospitalInfo;
+
+            var mapWindow = new MapWindow(selItem.Lat, selItem.Lon);
+
+            mapWindow.Owner = this;
+            mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            mapWindow.ShowDialog();
+           
+        }
+        #endregion
+
+        #region < 콤보박스(구군) 선택 메소드 >
+        private void CboReqDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CboReqDate.SelectedValue != null)
+            {
+                // 콤보박스에 선택된 내용이 맞는지 테스트
+                //MessageBox.Show(CboReqDate.SelectedValue.ToString());
+                using (MySqlConnection conn = new MySqlConnection(Commons.myConnString))
+                {
+                    conn.Open();
+                    var query = @"SELECT Id
+                                       , Gugun
+                                       , Animal_Hospital
+                                       , Approval
+                                       , Road_Address
+                                       , Tel
+                                       , Lat
+                                       , Lon
+                                       , Basic_Date
+                                    FROM animalhospital
+                                   WHERE Gugun = @Gugun";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Gugun", CboReqDate.SelectedValue.ToString());
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds, "hospitalInfo");
+                    List<HospitalInfo> hospitalInfo = new List<HospitalInfo>();
+
+                    foreach (DataRow row in ds.Tables["hospitalInfo"].Rows)
+                    {
+                        hospitalInfo.Add(new HospitalInfo()
+                        {
+                            Gugun = Convert.ToString(row["gugun"]),
+                            Animal_Hospital = Convert.ToString(row["animal_hospital"]),
+                            Approval = Convert.ToString(row["approval"]),
+                            Road_Address = Convert.ToString(row["road_address"]),
+                            Tel = Convert.ToString(row["tel"]),
+                            Lat = Convert.ToDouble(row["lat"]),
+                            Lon = Convert.ToDouble(row["lon"]),
+                            Basic_Date = Convert.ToString(row["basic_date"])
+                        });
+                    }
+
+                    this.DataContext = hospitalInfo;
+                    StsResult.Content = $"DB {hospitalInfo.Count} 건 조회 완료";
+                }
+            }
+
+            // 텍스트박스 취소버튼 클릭시 dbGrid 내용 지우고 다시 정보 띄우기
+            else
+            {
+                this.DataContext = null;
+                SearchHospital();
+                StsResult.Content = $"DB 조회 클리어";
+            }
+        }
+        #endregion
+
+        #region < 텍스트박스 엔터 시 검색 되도록 하는 메소드 >
+        private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BtnSearch_Click(sender, e);
+            }
+        }
+        #endregion
     }
 }
